@@ -14,6 +14,7 @@ USER root
 ENV NB_USER=rstudio \
     VIRTUAL_ENV=/opt/venv
 ENV PATH=${VIRTUAL_ENV}/bin:${PATH}
+ENV RSERVER_TIMEOUT=120 JUPYTER_RSESSION_PROXY_USE_SOCKET=no
 
 # Rocker's own script (present in the Bioconductor image) installs Jupyter,
 # jupyter-rsession-proxy (serves RStudio through Jupyter) and IRkernel.
