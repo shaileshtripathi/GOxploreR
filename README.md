@@ -17,13 +17,13 @@ The methods are described in:
 > biological significance. Scientific Reports 10(1): 16672.
 > https://doi.org/10.1038/s41598-020-73326-3
 
-## Which way should I use it?
+## Which way should it be used?
 
-| Option | You install | Package versions | Good for |
+| Option | installation needed | Package versions | Good for |
 |---|---|---|---|
 | 1. Browser (Binder) | Nothing | Frozen | Trying the package, short analyses |
 | 2. Docker | Docker | Frozen | Reproducible analyses, long runs, offline use |
-| 3. Normal R install | R packages | Whatever you have | Everyday use inside your own R |
+| 3. Normal R install | R packages | Existing R installation with suitable version | running with current R |
 
 Options 1 and 2 run the same container image. R and every dependency in it
 are fixed at the versions present when the image was built, so results do
@@ -42,7 +42,7 @@ not change when packages are updated later.
 
    ```r
    library(GOxploreR)
-   options(repr.plot.width = 11, repr.plot.height = 8)
+   options(repr.plot.width = 11, repr.plot.height = 9)
    res <- visRDAGBP(organism = "Human", plot = TRUE)
    res$plot
    ```
@@ -53,12 +53,12 @@ Things to know:
 
 - No account is needed.
 - The session is temporary and closes after about 10 minutes without
-  activity. Download your results before closing the tab: right-click the
+  activity. Download results before closing the tab: right-click the
   file in the file list on the left, then Download.
-- To use your own data, drag the file into the file list on the left, or
+- To use  own data, drag the file into the file list on the left, or
   use the upload button (arrow pointing up) above it.
 
-## 2. On your own computer with Docker
+## 2. On computer with Docker
 
 Install [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 (Windows, macOS) or Docker Engine (Linux) once. The first run downloads the
@@ -70,7 +70,7 @@ R prompt:
 docker run --rm -it ghcr.io/shaileshtripathi/goxplorer:0.99.0 R
 ```
 
-R prompt with access to the current folder (files you save appear there):
+R prompt with access to the current folder (files  saved will appear there):
 
 ```
 docker run --rm -it -v ${PWD}:/work ghcr.io/shaileshtripathi/goxplorer:0.99.0 R
@@ -212,12 +212,6 @@ Either the scientific or the common name can be used.
 `Gene2GOTermAndLevel_ON()` queries Ensembl through biomaRt and needs an
 internet connection.
 
-## Known issue
-
-`visRDAGBP()` currently fails for *Caenorhabditis elegans* (Worm) and
-*Saccharomyces cerevisiae* (Yeast) with an error of
-the form `replacement has 46 rows, data has 45`. The other eight organisms
-are not affected.
 
 ## Container files
 
