@@ -6,7 +6,7 @@ package code only.
 
 ## Run in the browser (no install, no account)
 
-[![Launch RStudio on Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/shaileshtripathi/GOxploreR/docker?urlpath=rstudio)
+[![Launch on Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/shaileshtripathi/GOxploreR/docker?urlpath=lab)
 
 Click the button, wait a few minutes, and RStudio opens with GOxploreR
 loaded via `library(GOxploreR)`. Sessions are temporary: download your
