@@ -1,0 +1,44 @@
+# Builds the GOxploreR image for amd64 + arm64 and pushes it to GHCR.
+# Lives on the `docker` branch; checks out the package from the default branch.
+name: docker
+
+on:
+  push:
+    branches: [docker]
+  workflow_dispatch:
+
+env:
+  PKG_BRANCH: devel        # default branch holding the package code
+  IMAGE: ghcr.io/shaileshtripathi/goxplorer
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4                      # docker branch (this file, Dockerfile)
+      - uses: actions/checkout@v4                      # package source
+        with:
+          ref: ${{ env.PKG_BRANCH }}
+          path: pkg
+      - name: Package version
+        id: ver
+        run: echo "version=$(grep '^Version:' pkg/DESCRIPTION | cut -d' ' -f2)" >> "$GITHUB_OUTPUT"
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          build-contexts: pkgsrc=./pkg
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ${{ env.IMAGE }}:${{ steps.ver.outputs.version }}
+            ${{ env.IMAGE }}:latest

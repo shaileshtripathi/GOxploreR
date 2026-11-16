@@ -1,0 +1,8 @@
+suppressPackageStartupMessages(library(GOxploreR))
+cat("GOxploreR", as.character(packageVersion("GOxploreR")), "\n")
+lv <- Level2GOTermBP(level = 2, organism = "Human")
+stopifnot(is.character(lv), length(lv) > 0)
+el <- GetDAG(organism = "Human", domain = "MF")
+stopifnot(is.matrix(el), ncol(el) == 2)
+print(getGOcategory(c("GO:0008150", "GO:0003674", "GO:0005575")))
+cat("Smoke test passed\n")
