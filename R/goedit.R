@@ -11,7 +11,7 @@
 #'                 are used in the ranking.
 #' @param domain Ontology of the GO-terms. The default is BP.
 #'
-#' @importFrom igraph graph.edgelist simplify get.all.shortest.paths all_simple_paths
+#' @importFrom igraph graph_from_edgelist simplify all_shortest_paths all_simple_paths
 #'
 #'
 #' @description Given a vector of GO-terms, this function prioritizes the GO-terms by expoiting the structure of a DAG.
@@ -65,70 +65,70 @@ prioritizedGOTerms <- function(lst = NULL, organism = NULL, sp = TRUE , domain =
 
   if(!is.null(Organism)){
     if(toupper(Organism) == "HOMO SAPIENS" || toupper(Organism) == "HUMAN"){
-      g <- graph.edgelist(as.matrix(Human[[tr]]), directed=TRUE)
+      g <- graph_from_edgelist(as.matrix(Human[[tr]]), directed=TRUE)
       g <- simplify(g)
       ALLGObptermAndLevel <- term
       rownames(ALLGObptermAndLevel) <- ALLGObptermAndLevel[,1]
       igraph::V(g)$lev <- ALLGObptermAndLevel[igraph::V(g)$name,2]
 
     }else if(toupper(Organism) == "RATTUS NORVEGICUS" || toupper(Organism) == "RAT"){
-      g <- graph.edgelist(as.matrix(gontr::Rat[[tr]]), directed=TRUE)
+      g <- graph_from_edgelist(as.matrix(gontr::Rat[[tr]]), directed=TRUE)
       g <- simplify(g)
       ALLGObptermAndLevel <- term
       rownames(ALLGObptermAndLevel) <- ALLGObptermAndLevel[,1]
       igraph::V(g)$lev <- ALLGObptermAndLevel[igraph::V(g)$name,2]
 
     }else if(toupper(Organism) == "MUS MUSCULUS" || toupper(Organism) == "MOUSE"){
-      g <- graph.edgelist(as.matrix(gontr::Mouse[[tr]]), directed=TRUE)
+      g <- graph_from_edgelist(as.matrix(gontr::Mouse[[tr]]), directed=TRUE)
       g <- simplify(g)
       ALLGObptermAndLevel <- term
       rownames(ALLGObptermAndLevel) <- ALLGObptermAndLevel[,1]
       igraph::V(g)$lev <- ALLGObptermAndLevel[igraph::V(g)$name,2]
 
     }else if(toupper(Organism) == "DANIO RERIO" || toupper(Organism) == "ZEBRAFISH"){
-      g <- graph.edgelist(as.matrix(Zebrafish[[tr]]), directed=TRUE)
+      g <- graph_from_edgelist(as.matrix(Zebrafish[[tr]]), directed=TRUE)
       g <- simplify(g)
       ALLGObptermAndLevel <- term
       rownames(ALLGObptermAndLevel) <- ALLGObptermAndLevel[,1]
       igraph::V(g)$lev <- ALLGObptermAndLevel[igraph::V(g)$name,2]
 
     }else if(toupper(Organism) == "CAENORHABDITIS ELEGANS" || toupper(Organism) == "WORM" ){
-      g <- graph.edgelist(as.matrix(Elegan[[tr]]), directed=TRUE)
+      g <- graph_from_edgelist(as.matrix(Elegan[[tr]]), directed=TRUE)
       g <- simplify(g)
       ALLGObptermAndLevel <- term
       rownames(ALLGObptermAndLevel) <- ALLGObptermAndLevel[,1]
       igraph::V(g)$lev <- ALLGObptermAndLevel[igraph::V(g)$name,2]
 
     }else if(toupper(Organism) == "ARABIDOPSIS THALIANA" || toupper(Organism) == "CRESS"){
-      g <- graph.edgelist(as.matrix(Athalian[[tr]]), directed=TRUE)
+      g <- graph_from_edgelist(as.matrix(Athalian[[tr]]), directed=TRUE)
       g <- simplify(g)
       ALLGObptermAndLevel <- term
       rownames(ALLGObptermAndLevel) <- ALLGObptermAndLevel[,1]
       igraph::V(g)$lev <- ALLGObptermAndLevel[igraph::V(g)$name,2]
 
     }else if(toupper(Organism) == "SACCHAROMYCES CEREVISIAE" || toupper(Organism) == "YEAST"){
-      g <- graph.edgelist(as.matrix(Yeast[[tr]]), directed=TRUE)
+      g <- graph_from_edgelist(as.matrix(Yeast[[tr]]), directed=TRUE)
       g <- simplify(g)
       ALLGObptermAndLevel <- term
       rownames(ALLGObptermAndLevel) <- ALLGObptermAndLevel[,1]
       igraph::V(g)$lev <- ALLGObptermAndLevel[igraph::V(g)$name,2]
 
     }else if(toupper(Organism) == "SCHIZOSACCHAROMYCES POMBE" || toupper(Organism) == "FISSION YEAST"){
-      g <- graph.edgelist(as.matrix(Pombe[[tr]]), directed=TRUE)
+      g <- graph_from_edgelist(as.matrix(Pombe[[tr]]), directed=TRUE)
       g <- simplify(g)
       ALLGObptermAndLevel <- term
       rownames(ALLGObptermAndLevel) <- ALLGObptermAndLevel[,1]
       igraph::V(g)$lev <- ALLGObptermAndLevel[igraph::V(g)$name,2]
 
     }else if(toupper(Organism) == "DROSOPHILA MELANOGASTER" || toupper(Organism) == "FRUIT FLY"){
-      g <- graph.edgelist(as.matrix(Drosophila[[tr]]), directed=TRUE)
+      g <- graph_from_edgelist(as.matrix(Drosophila[[tr]]), directed=TRUE)
       g <- simplify(g)
       ALLGObptermAndLevel <- term
       rownames(ALLGObptermAndLevel) <- ALLGObptermAndLevel[,1]
       igraph::V(g)$lev <- ALLGObptermAndLevel[igraph::V(g)$name,2]
 
     }else if(toupper(Organism) == "ESCHERICHIA COLI" || toupper(Organism) == "E.COLI"){
-      g <- graph.edgelist(as.matrix(Ecoli[[tr]]), directed=TRUE)
+      g <- graph_from_edgelist(as.matrix(Ecoli[[tr]]), directed=TRUE)
       g <- simplify(g)
       ALLGObptermAndLevel <- term
       rownames(ALLGObptermAndLevel) <- ALLGObptermAndLevel[,1]
@@ -136,7 +136,7 @@ prioritizedGOTerms <- function(lst = NULL, organism = NULL, sp = TRUE , domain =
     }
   }
   else{
-    g <- graph.edgelist(as.matrix(entireEdge), directed=TRUE)
+    g <- graph_from_edgelist(as.matrix(entireEdge), directed=TRUE)
     g <- simplify(g)
     ALLGObptermAndLevel <- term
     rownames(ALLGObptermAndLevel) <- ALLGObptermAndLevel[,1]
@@ -151,7 +151,7 @@ prioritizedGOTerms <- function(lst = NULL, organism = NULL, sp = TRUE , domain =
     H <- c()
     while(1){
       if(sp){
-        ptmp <- get.all.shortest.paths(g, names(rnk)[1], igraph::V(g)$name[which(igraph::V(g)$lev==golev)], mode="in")
+        ptmp <- all_shortest_paths(g, names(rnk)[1], igraph::V(g)$name[which(igraph::V(g)$lev==golev)], mode="in")
         nm <- unique(names(unlist(ptmp$res)))
       }
       else{

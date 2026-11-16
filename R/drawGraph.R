@@ -12,7 +12,7 @@
 #' @importFrom network %v%<- as.network
 #'
 #' @importFrom ggraph ggraph geom_edge_fan geom_node_point geom_node_text create_layout circle
-#' @importFrom dplyr distinct %>% rename mutate arrange id
+#' @importFrom dplyr distinct %>% rename mutate arrange
 # @importFrom ggplot2 scale_x_continuous
 
 drawGraph <- function(Elegans, nodeinfo, title, species, ont, org){
@@ -51,6 +51,7 @@ drawGraph <- function(Elegans, nodeinfo, title, species, ont, org){
     rename(id = target)
 
   # Nodes
+  id <- NULL
   node.data <- data.frame(id=1:num)
   nodes <- node.data %>%
     mutate(label = GOTotal) %>%

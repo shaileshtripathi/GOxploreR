@@ -14,7 +14,7 @@
 #' @importFrom network network network.size %v%<- as.network
 #' @importFrom ggraph ggraph geom_edge_fan geom_node_point geom_node_text create_layout circle
 #' @importFrom ggplot2 ggplot scale_fill_manual theme scale_alpha geom_hline geom_vline scale_color_discrete scale_x_discrete scale_y_continuous guides annotate aes arrow unit  element_blank element_text rel labs element_line
-#' @importFrom dplyr distinct %>% rename mutate arrange id
+#' @importFrom dplyr distinct %>% rename mutate arrange
 #' @importFrom ggplot2 scale_x_continuous
 #'
 drawGraph4Vis <- function(Elegans, nodeinfo, title, species, ont, val, org){
@@ -53,6 +53,7 @@ drawGraph4Vis <- function(Elegans, nodeinfo, title, species, ont, val, org){
     rename(id = target)
 
   # Nodes
+  id <- NULL
   node.data <- data.frame(id=1:num)
   nodes <- node.data %>%
     mutate(label = GOTotal) %>%
