@@ -38,7 +38,7 @@ The GO hierarchy is built from `GO.db` when the image is built, so the
 level/DAG functions work offline. `Gene2GOTermAndLevel_ON()` and other
 biomaRt-based calls still need internet access to Ensembl.
 
-## Build it yourself
+## Building and Installation
 
 ```bash
 git clone -b docker https://github.com/shaileshtripathi/GOxploreR goxplorer-docker
@@ -55,10 +55,3 @@ variant; if it does not, drop `linux/arm64` from the workflow's `platforms`.
 The workflow in `.github/workflows/docker.yml` builds amd64 + arm64 images
 and pushes them to GHCR on every push to this branch.
 
-## After Bioconductor acceptance
-
-Once GOxploreR is in a Bioconductor release, it can be installed in any
-official Bioconductor image with `BiocManager::install("GOxploreR")`.
-A Bioconda recipe (`bioconductor-goxplorer`, created with bioconda-utils'
-`bioconductor-skeleton`) additionally gets a BioContainers image built
-automatically on quay.io/biocontainers once the recipe is merged.
